@@ -10,7 +10,9 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory;
+import org.apache.commons.dbcp.BasicDataSourceFactory;
+
+
 
 
 public class DbcpDataSource {
