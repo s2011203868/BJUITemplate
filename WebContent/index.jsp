@@ -204,6 +204,9 @@ function bjui_index_exchange() {
                     <li>
                         <a href="MenuServlet?method=getmenulist&zid=2" data-toggle="sidenav" data-id-key="targetid">权限管理</a>
                     </li>
+                    <li>
+                        <a href="MenuServlet?method=getmenulist&zid=3" data-toggle="sidenav" data-id-key="targetid">档案管理</a>
+                    </li>
                 <!--     <li>
                         <a href="js/B-JUI.1.31/json/menu-datagrid.json" data-toggle="sidenav" data-id-key="targetid">数据表格(Datagrid)</a>
                     </li>

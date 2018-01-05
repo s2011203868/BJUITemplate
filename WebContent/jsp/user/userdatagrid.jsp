@@ -25,7 +25,7 @@ $('#j_datagrid').datagrid({
     height: '100%',
     //gridTitle : 'datagrid 完整示例 - JS API',
     showToolbar: true,
-    toolbarItem: 'all',
+    //toolbarItem: 'all',
     local: 'remote',
     columnLock:false,
     delPK:'id',
@@ -120,8 +120,9 @@ $('#j_datagrid').datagrid({
     contextMenuB:true,
     noremove: false,
     showCheckboxcol:true,
-    //toolbarItem:'add,edit,cancel,save,|,del,|,refresh',
+    toolbarItem:'add,edit,cancel,save,|,del,|,refresh,|,import, export',
     importOption:{type:"dialog", options:{url:'jsp/user/import.jsp', width:500, height:300,title:'导入数据'}},
+    exportOption: {type:'file', options:{url:'UserServlet?method=export', loadingmask:true}},
     afterDelete:function(){
     	$('#j_datagrid').datagrid('refresh',true);
     },

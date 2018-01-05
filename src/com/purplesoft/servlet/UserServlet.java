@@ -141,6 +141,9 @@ public class UserServlet extends HttpServlet {
 			UserService userService = new UserServiceImpl();
 			int n = userService.insertByList(list);
 			if(n==list.size()){
+				File tempFile = new File(path+"Temp\\"+fileName);
+				
+				tempFile.delete();
 				String res= "{\"statusCode\":\"200\",\"message\":\"\u64cd\u4f5c\u6210\u529f\"}";
 				response.getWriter().write(res);	
 			}else{
