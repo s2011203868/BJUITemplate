@@ -9,8 +9,10 @@
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>com.purplesoft.servlet.UserServlet</servlet-class>
   </servlet>
-
-
+  <servlet>
+    <servlet-name>SjzbServlet</servlet-name>
+    <servlet-class>com.purplesoft.servlet.SjzbServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>MenuServlet</servlet-name>
     <url-pattern>/MenuServlet</url-pattern>
@@ -18,6 +20,10 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SjzbServlet</servlet-name>
+    <url-pattern>/SjzbServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
