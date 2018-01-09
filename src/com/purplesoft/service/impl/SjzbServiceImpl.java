@@ -35,7 +35,6 @@ public class SjzbServiceImpl implements SjzbService {
 		// TODO Auto-generated method stub
 		SjzbDao sjzbDao = new SjzbDaoImpl();
 		int MaxId = sjzbDao.getMaxTreeId();
-		System.out.println(pid);
 		int id = MaxId + 1;
 		String isParent = sjzbDao.isParent(pid);
 		if(isParent.equals("false")){
@@ -43,6 +42,30 @@ public class SjzbServiceImpl implements SjzbService {
 		}
 		int n = sjzbDao.addTree(pid,name,id);
 		return n;
+	}
+
+	@Override
+	public void reName(String id, String name) {
+		// TODO Auto-generated method stub
+		SjzbDao sjzbDao = new SjzbDaoImpl();
+		sjzbDao.reName(id,name);
+	}
+
+	@Override
+	public void delTree(String id) {
+		// TODO Auto-generated method stub
+		SjzbDao sjzbDao = new SjzbDaoImpl();
+		List<Map<String, Object>> list = sjzbDao.getChildren(id);
+		for(Map<String ,Object> map : list){
+			Set<String> keySet = map.keySet();
+			for(String key : keySet){
+				if(key.equals("id")){
+					sjzbDao.delTree(map.get(key)+"");
+					this.delTree(map.get(key)+"");
+				}
+			}
+		}
+		sjzbDao.delTree(id);
 	}
 
 }

@@ -70,6 +70,41 @@ public class SjzbDaoImpl implements SjzbDao {
 		baseDao.update(sql);
 	}
 
+	@Override
+	public void reName(String id, String name) {
+		// TODO Auto-generated method stub
+		BaseDao<SjzbTree> baseDao = new BaseDaoImp<SjzbTree>();
+		String sql = "update sjzbtree set name = '"+name+"' where id = "+id+"";
+		baseDao.update(sql);
+	}
+
+	@Override
+	public void delTree(String id) {
+		// TODO Auto-generated method stub
+		BaseDao<SjzbTree> baseDao = new BaseDaoImp<SjzbTree>();
+		String sql = "delete from sjzbtree where id = "+id+"";
+		baseDao.update(sql);
+	}
+
+	@Override
+	public String getIdByPid(String id) {
+		BaseDao<SjzbTree> baseDao = new BaseDaoImp<SjzbTree>();
+		String sql = "select pid from sjzbtree where id = "+id+"";
+		List<Map<String,Object>> treeList = baseDao.query(sql);
+		String pid = treeList.get(0).get("pid")+"";
+		return pid;
+	}
+
+	@Override
+	public void updateParentToFalse(String pid) {
+		// TODO Auto-generated method stub
+		BaseDao<SjzbTree> baseDao = new BaseDaoImp<SjzbTree>();
+		String sql = "update sjzbtree set isParent = 'false' where id = "+pid+"";
+		baseDao.update(sql);
+		
+	}
+
 	
+
 
 }

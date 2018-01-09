@@ -1,11 +1,16 @@
 package com.purplesoft.servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.purplesoft.dao.SjzbDao;
+import com.purplesoft.dao.impl.SjzbDaoImpl;
 import com.purplesoft.service.SjzbService;
 import com.purplesoft.service.impl.SjzbServiceImpl;
 
@@ -28,7 +33,35 @@ public class SjzbServlet extends HttpServlet {
 			getTree(request,response);
 		}else if(method.equals("addtree")){
 			addTree(request,response);
+		}else if(method.equals("modifyname")){
+			reTreeName(request,response);
+		}else if(method.equals("delTree")){
+			delTree(request,response);
 		}
+	}
+
+
+	private void delTree(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		SjzbService sjzbService = new SjzbServiceImpl();
+		SjzbDao sjzbDao = new SjzbDaoImpl();
+		String id = request.getParameter("id");
+		String pid = sjzbDao.getIdByPid(id);
+		List<Map<String, Object>> lists = sjzbDao.getChildren(pid);
+		if(lists.size()<=1){
+			sjzbDao.updateParentToFalse(pid);
+		}
+		sjzbService.delTree(id);
+		
+	}
+
+
+	private void reTreeName(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		SjzbService sjzbService = new SjzbServiceImpl();
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		sjzbService.reName(id,name);
 	}
 
 
@@ -37,7 +70,9 @@ public class SjzbServlet extends HttpServlet {
 		SjzbService sjzbService = new SjzbServiceImpl();
 		String pid = request.getParameter("pid");
 		String name = request.getParameter("name");
-		sjzbService.addTree(pid,name);
+		if(pid!=null || pid !=""){
+			sjzbService.addTree(pid,name);
+		}
 	}
 
 
@@ -56,7 +91,7 @@ public class SjzbServlet extends HttpServlet {
 			System.out.println(tree);
 			response.getWriter().write(tree);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Ato-generated catch block
 			e.printStackTrace();
 		}
 	}

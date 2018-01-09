@@ -19,4 +19,14 @@ public interface SjzbDao {
 
 	void updateParent(String pid);
 
+	void reName(String id, String name);
+
+	void delTree(String id);
+
+	String getIdByPid(String id);
+
+	void updateParentToFalse(String pid);
+
+	
+
 }

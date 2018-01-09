@@ -18,13 +18,11 @@
         
         zTree.expandNode(treeNode)
         return
-    } 
-   var tar = treeNode.target;
-   if(tar!=""||tar!=null){
-	   $(this).bjuiajax('doLoad', {url:treeNode.uri, target:treeNode.target})
-   }
+    } ;
+   
+   $(this).bjuiajax('doLoad', {url:treeNode.uri, target:treeNode.target});
 
-} 
+}; 
 
    var setting = {    
            data: {    
@@ -35,7 +33,7 @@
            ,async: {    
                enable: true,    
                url:"SjzbServlet?method=getTree",    
-               autoParam:["id", "name"],    
+               autoParam:["id", "name", "level=level"],    
                otherParam:{"otherParam":"zTreeAsyncTest"},    
                dataFilter: filter  //异步返回后经过Filter  
            },
@@ -49,7 +47,8 @@
                enable: true, //单独设置为true时，可加载修改、删除图标  
                editNameSelectAll: true,  
                showRemoveBtn: showRemoveBtn,
-			   showRenameBtn: showRenameBtn
+			   showRenameBtn: showRenameBtn,
+			   
            }, 
             callback:{     
                asyncSuccess: zTreeOnAsyncSuccess,//异步加载成功的fun    
@@ -80,6 +79,8 @@
 	            var newID = data; //获取新添加的节点Id  
 	            zTree.addNodes(treeNode, {id:newID, pId:treeNode.id, name:name}); //页面上添加节点  
 	            var node = zTree.getNodeByParam("id", newID, null); //根据新的id找到新添加的节点  
+	            treeNode.isParent = true;//把属性变成true，让这个节点被认为是父节点  
+	            zTree.reAsyncChildNodes(treeNode, "refresh", false); 
 	            zTree.selectNode(node); //让新添加的节点处于选中状态  
 	        });  
 	    });  
@@ -93,34 +94,48 @@
     function onRename(e, treeId, treeNode, isCancel) {  
         //需要对名字做判定的，可以来这里写~~  
         $.post('SjzbServlet?method=modifyname&id='+treeNode.id+'&name='+treeNode.name);  
-    }
+    };
     
     function beforeRename(treeId, treeNode, newName, isCancel) {  
         if (newName.length == 0) {  
-            alert("节点名称不能为空.");  
+        	BJUI.alertmsg('info', '节点名称不可为空！',{})
+        	
             return false;  
         }  
         return true;  
-    }  
+    }  ;
     
     function onRemove(e, treeId, treeNode) {  
         //需要对删除做判定或者其它操作，在这里写~~  
-        $.post('SjzbServlet?method=del&id='+treeNode.id);  
-    }  
+        $.post('SjzbServlet?method=delTree&id='+treeNode.id);  
+    }  ;
     
     
     function beforeRemove(treeId, treeNode) {  
         var zTree = $.fn.zTree.getZTreeObj("sjzbtree");  
         zTree.selectNode(treeNode);  
-        return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");  
-    }  
+        return  confirm("确认删除 节点 -- " + treeNode.name + " 吗？"); 
+        
+    } ; 
     
     function showRemoveBtn(treeId, treeNode) {
-		return !treeNode.isFirstNode;
-	}
+		
+		
+		if(treeNode.noEditBtn != undefined && treeNode.noEditBtn){
+			return false;
+		}else{
+			return true;
+		}
+		
+	};
 	function showRenameBtn(treeId, treeNode) {
-		return !treeNode.isLastNode;
-	}
+		
+		if(treeNode.noRemoveBtn != undefined && treeNode.noRemoveBtn){
+			return false;
+		}else{
+			return true;
+		}
+	};
     
        function filter(treeId, parentNode, childNodes) {    
            if (!childNodes) return null;    
@@ -128,15 +143,15 @@
                childNodes[i].name = childNodes[i].name.replace('','');    
            }    
            return childNodes;    
-       }    
+       };    
 
        function zTreeOnAsyncError(event, treeId, treeNode){    
            alert("异步加载失败!");    
-       }    
+       } ;   
          
        function zTreeOnAsyncSuccess(event, treeId, treeNode, msg){    
              
-       }  
+       } ; 
        
        var zNodes=[];  
        $(document).ready(function(){    
