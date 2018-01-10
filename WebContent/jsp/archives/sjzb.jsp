@@ -108,7 +108,7 @@
     function onRemove(e, treeId, treeNode) {  
         //需要对删除做判定或者其它操作，在这里写~~  
         $.post('SjzbServlet?method=delTree&id='+treeNode.id);  
-    }  ;
+    };
     
     
     function beforeRemove(treeId, treeNode) {  
@@ -116,7 +116,7 @@
         zTree.selectNode(treeNode);  
         return  confirm("确认删除 节点 -- " + treeNode.name + " 吗？"); 
         
-    } ; 
+    }; 
     
     function showRemoveBtn(treeId, treeNode) {
 		
@@ -163,20 +163,6 @@
 <body>
 <div class="bjui-pageContent">
     <div style="float:left; width:200px;">
-      <!--  <ul id="layout-tree" 
-        	class="ztree" 
-        	data-toggle="ztree" 
-        	data-expand-all="true"
-            data-add-hover-dom="edit" 
-            data-remove-hover-dom="edit" 
-            data-options="{nodes:'ztree_returnjson'}"
-            data-edit-enable="true"
-			data-before-drag="M_BeforeNodeDrag"
-			data-before-drop="M_BeforeNodeDrop"
-			data-on-drop="M_NodeDrop"
-			data-on-click="do_open_layout"
-            >
-        </ul> -->
         <ul id="sjzbtree" class="ztree"  ></ul>
     </div>
     <div style=" height:99.9%; overflow:hidden;">

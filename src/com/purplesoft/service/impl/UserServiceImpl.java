@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String getUserListByPage(String pageSize,String pageCurrent) {
+	public String getUserListByPage(String pageSize,String pageCurrent, String username, String age, String sex, String birthday, String city, String salary, String starttime, String endtime, String description, String orders) {
 		UserDao userDao = new UserDaoImpl();
-		List<Map<String, Object>> userList = userDao.getUserListByPage(pageSize, pageCurrent);
+		List<Map<String, Object>> userList = userDao.getUserListByPage(pageSize, pageCurrent,username,age,sex,birthday,city,salary,starttime,endtime,description,orders);
 		//List<Map<String, Object>> userList = userDao.getUserList();
 		List<User> uList = new ArrayList<User>();
 		for(Map<String,Object> map : userList){

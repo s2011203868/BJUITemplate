@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -297,7 +298,17 @@ public class UserServlet extends HttpServlet {
 		UserService userService = new UserServiceImpl();
 		String pageSize = request.getParameter("pageSize");
 		String pageCurrent = request.getParameter("pageCurrent");
-		String resString = userService.getUserListByPage(pageSize, pageCurrent);
+		String username = request.getParameter("username");
+		String age = request.getParameter("age");
+		String sex = request.getParameter("sex");
+		String birthday = request.getParameter("birthday");
+		String city = request.getParameter("city");
+		String salary = request.getParameter("salary");
+		String starttime = request.getParameter("starttime");
+		String endtime = request.getParameter("endtime");
+		String description = request.getParameter("description");
+		String orders = request.getParameter("orders");
+		String resString = userService.getUserListByPage(pageSize, pageCurrent,username,age,sex,birthday,city,salary,starttime,endtime,description,orders);
 		try {
 			response.getWriter().write(resString);
 		} catch (IOException e) {

@@ -90,7 +90,7 @@ $(function() {
                          overwriteHomeTab : false //[可选]当打开一个未定义id的navtab时，是否可以覆盖主navtab(我的主页)
                        },
         debug        : true,    // [可选]调试模式 [true|false，默认false]
-        theme        : 'green' // 若有Cookie['bjui_theme'],优先选择Cookie['bjui_theme']。皮肤[五种皮肤:default, orange, purple, blue, red, green]
+        theme        : 'purple' // 若有Cookie['bjui_theme'],优先选择Cookie['bjui_theme']。皮肤[五种皮肤:default, orange, purple, blue, red, green]
     })
     //时钟
     var today = new Date(), time = today.getTime()
@@ -162,7 +162,7 @@ function bjui_index_exchange() {
                     <li><a href="js/B-JUI.1.31/changepassword.html" data-toggle="dialog" data-id="sys_user_changepass" data-mask="true" data-width="400" data-height="300">修改密码</a></li>
                     <li><a href="js/B-JUI.1.31/login.html" style="font-weight:bold;">&nbsp;<i class="fa fa-power-off"></i> 注销登陆</a></li>
                     
-                    <!-- <li><a href="javascript:;" onclick="bjui_index_exchange()" title="横向收缩/充满屏幕"><i class="fa fa-exchange"></i></a></li> -->
+                    
                     <li class="dropdown"><a href="#" class="dropdown-toggle bjui-fonts-tit" data-toggle="dropdown" title="更改字号"><i class="fa fa-font"></i> 大</a>
                         <ul class="dropdown-menu" role="menu" id="bjui-fonts">
                             <li><a href="javascript:;" class="bjui-font-a" data-toggle="fonts"><i class="fa fa-font"></i> 特大</a></li>
@@ -171,13 +171,14 @@ function bjui_index_exchange() {
                             <li><a href="javascript:;" class="bjui-font-d" data-toggle="fonts"><i class="fa fa-font"></i> 小</a></li>
                         </ul>
                     </li>										
-                    <li class="dropdown active" ><a href="#" class="dropdown-toggle theme" data-toggle="dropdown" title="切换皮肤"><i class="fa fa-tree"></i></a>
+                    <li class="dropdown active" ><a href="#" class="dropdown-toggle theme" data-toggle="dropdown" title="切换皮肤"><i class="fa fa-tree"></i>&nbsp</a>
                         <ul class="dropdown-menu" role="menu" id="bjui-themes">
                             <li class="active"><a href="javascript:;" class="theme_purple" data-toggle="theme" data-theme="purple">&nbsp;<i class="fa fa-tree"></i> 紫罗兰</a></li>
                             <li><a href="javascript:;" class="theme_blue" data-toggle="theme" data-theme="blue">&nbsp;<i class="fa fa-tree"></i> 天空蓝</a></li>
                             <li><a href="javascript:;" class="theme_green" data-toggle="theme" data-theme="green">&nbsp;<i class="fa fa-tree"></i> 绿草如茵</a></li>
                         </ul> 
                     </li>
+                    <li><a href="javascript:;" onclick="bjui_index_exchange()" title="横向收缩/充满屏幕"><i class="fa fa-exchange"></i>&nbsp</a></li>
                 </ul>
             </nav>
         </div>
@@ -219,17 +220,16 @@ function bjui_index_exchange() {
         <div class="container_fluid" id="bjui-body">
             <div id="bjui-sidenav-col">
                 <div id="bjui-sidenav">
-                     <div id="bjui-sidenav-arrow" data-toggle="tooltip"  data-toggle="tooltip"  data-placement="left"  data-title="隐藏左侧菜单">
-                       <i class="fa fa-long-arrow-left"></i> -
-                    </div> 
+                    <div id="bjui-sidenav-arrow" data-toggle="tooltip" data-placement="left" data-title="隐藏左侧菜单">
+                        <i class="fa fa-long-arrow-left" style="margin-top:9px"></i>
+                    </div>
                    <div id="bjui-sidenav-box">
-                        
-                    </div> 
+                   </div> 
                 </div>
             </div>
             <div id="bjui-navtab" class="tabsPage">
-                <div id="bjui-sidenav-btn" data-toggle="tooltip" data-toggle="tooltip" data-placement="right"   data-title="显示左侧菜单" >
-                    <i class="fa fa-bars"></i>
+                <div id="bjui-sidenav-btn" data-toggle="tooltip" data-title="显示左侧菜单" data-placement="right">
+                    <i class="fa fa-bars" style="margin-top:9px"></i>
                 </div>
                 <div class="tabsPageHeader">
                     <div class="tabsPageHeaderContent">

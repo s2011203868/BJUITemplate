@@ -7,7 +7,7 @@ public interface UserDao {
 
 	List<Map<String,Object>> getUserList();
 	
-	List<Map<String, Object>> getUserListByPage(String pageSize,String pageCurrent);
+	List<Map<String, Object>> getUserListByPage(String pageSize,String pageCurrent, String username, String age, String sex, String birthday, String city, String salary, String starttime, String endtime, String description, String orders);
 	
 	int addSave(String username, String age, String sex, String birthday,
 			String city, String salary,String starttime, String endtime, String description) throws Exception;
