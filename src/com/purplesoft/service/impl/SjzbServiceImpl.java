@@ -31,7 +31,7 @@ public class SjzbServiceImpl implements SjzbService {
 	}
 
 	@Override
-	public int addTree(String pid,String name) {
+	public int addTree(String pid,String name,String data) {
 		// TODO Auto-generated method stub
 		SjzbDao sjzbDao = new SjzbDaoImpl();
 		int MaxId = sjzbDao.getMaxTreeId();
@@ -40,7 +40,7 @@ public class SjzbServiceImpl implements SjzbService {
 		if(isParent.equals("false")){
 			sjzbDao.updateParent(pid);
 		}
-		int n = sjzbDao.addTree(pid,name,id);
+		int n = sjzbDao.addTree(pid,name,id,data);
 		return n;
 	}
 

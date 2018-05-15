@@ -8,10 +8,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-
 <script type="text/javascript">
- function do_open_layout(treeId, treeNode, clickFlag) {
+ function do_open_tree(treeId, treeNode, clickFlag) {
 	
    if (treeNode.isParent) {
         var zTree = $.fn.zTree.getZTreeObj(treeId)
@@ -20,8 +18,10 @@
         return
     } ;
    
-   $(this).bjuiajax('doLoad', {url:treeNode.uri, target:treeNode.target});
-
+   $(this).bjuiajax('doLoad', {
+	   url:treeNode.uri,
+	   target:treeNode.target,
+	   });
 }; 
 
    var setting = {    
@@ -53,7 +53,7 @@
             callback:{     
                asyncSuccess: zTreeOnAsyncSuccess,//异步加载成功的fun    
                asyncError: zTreeOnAsyncError,   //加载错误的fun    
-               beforeClick: do_open_layout ,	//点击node的fun
+               beforeClick: do_open_tree ,	//点击node的fun
                onRemove: onRemove, //移除事件  
                onRename: onRename, //修改事件  
                beforeRename: beforeRename, //修改确认事件
@@ -74,15 +74,33 @@
 	    if (btn) btn.bind("click", function(){  
 	        var zTree = $.fn.zTree.getZTreeObj("sjzbtree");  
 	        //将新节点添加到数据库中  
-	        var name='NewNode';  
-	        $.post('SjzbServlet?method=addtree&pid='+treeNode.id+'&name='+name,function (data) {  
-	            var newID = data; //获取新添加的节点Id  
-	            zTree.addNodes(treeNode, {id:newID, pId:treeNode.id, name:name}); //页面上添加节点  
-	            var node = zTree.getNodeByParam("id", newID, null); //根据新的id找到新添加的节点  
-	            treeNode.isParent = true;//把属性变成true，让这个节点被认为是父节点  
-	            zTree.reAsyncChildNodes(treeNode, "refresh", false); 
-	            zTree.selectNode(node); //让新添加的节点处于选中状态  
-	        });  
+	        var name='NewNode';
+	        var formdata;
+	        
+	        BJUI.dialog({
+	            id:'formdata',
+	            url:'jsp/archives/node.jsp',
+	            /* html:'<div style="margin:15px auto; padding:15px; width:98%;height:98%; border:1px #ff6600 solid;"></div>', */
+	            title:'选择隐藏列',
+	            width:600,
+	            height:350,
+	            onLoad:function(){
+	            	
+	            	$('.btn-default').click(function(){
+	            		formdata = $('.datagrid-edit-form').serialize();//获取form表单值
+	            		BJUI.dialog('closeCurrent');//关闭当前dialog
+	            		
+            		 $.post('SjzbServlet?method=addtree&'+formdata+'&pid='+treeNode.id+'&name='+name,function (data) {  
+         	            var newID = data; //获取新添加的节点Id  
+         	            zTree.addNodes(treeNode, {id:newID, pId:treeNode.id, name:name}); //页面上添加节点  
+         	            var node = zTree.getNodeByParam("id", newID, null); //根据新的id找到新添加的节点  
+         	            treeNode.isParent = true;//把属性变成true，让这个节点被认为是父节点  
+         	            zTree.reAsyncChildNodes(treeNode, "refresh", false); 
+         	            zTree.selectNode(node); //让新添加的节点处于选中状态  
+         	        }); 
+        		  });
+	            } 
+	        });
 	    });  
 	};
 	

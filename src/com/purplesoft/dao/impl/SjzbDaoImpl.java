@@ -44,10 +44,10 @@ public class SjzbDaoImpl implements SjzbDao {
 	}
 
 	@Override
-	public int addTree(String pid, String name, int id) {
+	public int addTree(String pid, String name, int id,String data) {
 		// TODO Auto-generated method stub
 		BaseDao<SjzbTree> baseDao = new BaseDaoImp<SjzbTree>();
-		String sql = "insert into sjzbtree (id,pid,name,isParent) value ("+id+","+pid+",'"+name+"','false')";
+		String sql = "insert into sjzbtree (id,pid,name,isParent,hidden,uri) value ("+id+","+pid+",'"+name+"','false','"+data+"','jsp/archives/sjzbdatagrid.jsp')";
 		int n = baseDao.update(sql);
 		return n;
 	}

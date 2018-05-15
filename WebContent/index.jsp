@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -157,7 +158,7 @@ function bjui_index_exchange() {
             <nav class="collapse navbar-collapse" id="bjui-top-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="datetime"><a><span id="bjui-date">0000/00/00</span> <span id="bjui-clock">00:00:00</span></a></li>
-                    <li><a href="#">账号：BJUI</a></li>
+                    <li><a href="#">账号：${username }</a></li>
                     <li><a href="#">角色：管理员</a></li>
                     <li><a href="js/B-JUI.1.31/changepassword.html" data-toggle="dialog" data-id="sys_user_changepass" data-mask="true" data-width="400" data-height="300">修改密码</a></li>
                     <li><a href="js/B-JUI.1.31/login.html" style="font-weight:bold;">&nbsp;<i class="fa fa-power-off"></i> 注销登陆</a></li>
@@ -193,25 +194,30 @@ function bjui_index_exchange() {
             </div>
             <nav class="collapse navbar-collapse" id="bjui-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right" id="bjui-hnav-navbar">
-                    <li class="active">
-                        <a href="MenuServlet?method=getmenulist&zid=1" data-toggle="sidenav" data-id-key="targetid">用户管理</a>
-                    </li>
-                    <li>
-                        <a href="MenuServlet?method=getmenulist&zid=2" data-toggle="sidenav" data-id-key="targetid">权限管理</a>
-                    </li>
-                    <li>
-                        <a href="MenuServlet?method=getmenulist&zid=3" data-toggle="sidenav" data-id-key="targetid">档案管理</a>
-                    </li>
-                <!--     <li>
-                        <a href="js/B-JUI.1.31/json/menu-datagrid.json" data-toggle="sidenav" data-id-key="targetid">数据表格(Datagrid)</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="sidenav" data-tree="true" data-tree-options="{onClick:MainMenuClick}" data-id-key="targetid">待续……</a>
-                        <script class="items"></script>
-                    </li>
-                    <li>
-                        <a href="1.2" target="_blank">旧版DEMO</a>
-                    </li> -->
+                	<c:if test="${permission eq '1' }">
+                		<li class="active">
+                        	<a href="MenuServlet?method=getmenulist&zid=1" data-toggle="sidenav" data-id-key="targetid">用户管理</a>
+                    	</li>
+                	</c:if>
+                	<c:if test="${permission eq '2' }">
+                		<li class="active">
+                        	<a href="MenuServlet?method=getmenulist&zid=1" data-toggle="sidenav" data-id-key="targetid">用户管理</a>
+                    	</li>
+                    	<li>
+                        	<a href="MenuServlet?method=getmenulist&zid=2" data-toggle="sidenav" data-id-key="targetid">权限管理</a>
+                    	</li>
+                	</c:if>
+                	<c:if test="${permission eq '3' }">
+                		<li class="active">
+                        	<a href="MenuServlet?method=getmenulist&zid=1" data-toggle="sidenav" data-id-key="targetid">用户管理</a>
+                    	</li>
+                    	<li>
+                        	<a href="MenuServlet?method=getmenulist&zid=2" data-toggle="sidenav" data-id-key="targetid">权限管理</a>
+                    	</li>
+                    	<li>
+                        	<a href="MenuServlet?method=getmenulist&zid=3" data-toggle="sidenav" data-id-key="targetid">档案管理</a>
+                    	</li>
+                	</c:if>
                 </ul>
             </nav>
         </div>

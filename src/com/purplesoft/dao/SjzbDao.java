@@ -13,7 +13,7 @@ public interface SjzbDao {
 
 	int getMaxTreeId();
 
-	int addTree(String pid, String name, int id);
+	int addTree(String pid, String name, int id,String data);
 
 	String isParent(String pid);
 

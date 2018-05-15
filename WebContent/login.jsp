@@ -77,7 +77,7 @@ $(function() {
         
         //return true;
         
-        location.href = 'jsp/index/index.jsp'
+       // location.href = 'jsp/index/index.jsp'
         
     });
 });
@@ -102,7 +102,7 @@ function choose_bg() {
 <![endif]-->
 <div class="container">
     <div class="main_box">
-        <form action="jsp/index/index.jsp" id="login_form" method="post">
+        <form action="LoginServlet?method=login" id="login_form" method="post">
             <input type="hidden" value="" id="j_randomKey" />
             <input type="hidden" name="jfinal_token" value="" />
             <p class="text-center logo"><img src="js/B-JUI.1.31/images/logo.png" height="45"></p>
@@ -116,7 +116,7 @@ function choose_bg() {
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon" id="sizing-addon-password"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input type="password" class="form-control" id="j_password" name="passwordhash" placeholder="登录密码" aria-describedby="sizing-addon-password">
+                    <input type="password" class="form-control" id="j_password" name="password" placeholder="登录密码" aria-describedby="sizing-addon-password">
                 </div>
             </div>
             <div class="form-group">
